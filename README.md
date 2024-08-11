@@ -25,18 +25,22 @@
 ### Установка
 
 1. Клонируйте репозиторий:
-
-   ```bash
-   git clone https://github.com/yourusername/yourproject.git
-2. Создайте пользователя для БД:
+2. Выполните bundle install
+3. Создайте пользователя для БД:
 
    ```bash
    sudo -u postgres psql
    CREATE USER test_sodruzestvo WITH PASSWORD 'test_sodruzestvo';
    ALTER USER test_sodruzestvo CREATEDB;
-3. Создайте БД:
+4. Создайте БД:
 
    ```bash
    rails db:create
    rails db:migrate
    rails db:seed
+5. Тестирование:
+
+   ```bash
+   rspec
+   rake rswag:specs:swaggerize
+6. Swagger http://localhost:3000/api-docs/index.html

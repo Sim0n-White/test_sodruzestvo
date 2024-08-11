@@ -1,0 +1,378 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/authors":
+    get:
+      summary: Retrieves all authors
+      tags:
+      - Authors
+      responses:
+        '200':
+          description: authors found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/author"
+    post:
+      summary: Creates a new author
+      tags:
+      - Authors
+      parameters: []
+      responses:
+        '201':
+          description: author created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/authors/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Retrieves a specific author
+      tags:
+      - Authors
+      responses:
+        '200':
+          description: author found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/author"
+        '404':
+          description: author not found
+    put:
+      summary: Updates an existing author
+      tags:
+      - Authors
+      parameters: []
+      responses:
+        '200':
+          description: author updated
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: Deletes an existing author
+      tags:
+      - Authors
+      responses:
+        '204':
+          description: author deleted
+        '404':
+          description: author not found
+        '422':
+          description: no other author
+  "/competencies":
+    get:
+      summary: Retrieves all competencies
+      tags:
+      - Competencies
+      responses:
+        '200':
+          description: competencies found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/competency"
+    post:
+      summary: Creates a competency
+      tags:
+      - Competencies
+      parameters: []
+      responses:
+        '201':
+          description: competency created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+              required:
+              - name
+              - description
+  "/competencies/{id}":
+    get:
+      summary: Retrieves a competency
+      tags:
+      - Competencies
+      parameters:
+      - name: id
+        in: path
+        description: Competency ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: competency found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/competency"
+        '404':
+          description: competency not found
+    put:
+      summary: Updates a competency
+      tags:
+      - Competencies
+      parameters:
+      - name: id
+        in: path
+        description: Competency ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: competency updated
+        '404':
+          description: competency not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+              required:
+              - name
+              - description
+    delete:
+      summary: Deletes a competency
+      tags:
+      - Competencies
+      parameters:
+      - name: id
+        in: path
+        description: Competency ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: competency deleted
+        '404':
+          description: competency not found
+  "/courses":
+    get:
+      summary: Retrieves all courses
+      tags:
+      - Courses
+      responses:
+        '200':
+          description: courses found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    author_id:
+                      type: integer
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - title
+                  - description
+                  - author_id
+                  - created_at
+                  - updated_at
+    post:
+      summary: Creates a course
+      tags:
+      - Courses
+      parameters: []
+      responses:
+        '201':
+          description: course created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                author_id:
+                  type: integer
+                competency_ids:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - title
+              - description
+              - author_id
+  "/courses/{id}":
+    get:
+      summary: Retrieves a course
+      tags:
+      - Courses
+      parameters:
+      - name: id
+        in: path
+        description: Course ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: course found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/course"
+        '404':
+          description: course not found
+    put:
+      summary: Updates a course
+      tags:
+      - Courses
+      parameters:
+      - name: id
+        in: path
+        description: Course ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: course updated
+        '422':
+          description: invalid request
+        '404':
+          description: course not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - title
+              - description
+              - author_id
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                author_id:
+                  type: integer
+                competency_ids:
+                  type: array
+                  items:
+                    type: integer
+    delete:
+      summary: Deletes a course
+      tags:
+      - Courses
+      parameters:
+      - name: id
+        in: path
+        description: Course ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: course deleted
+        '404':
+          description: course not found
+components:
+  schemas:
+    author:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+      - id
+      - name
+    course:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: text
+        author_id:
+          type: integer
+      required:
+      - id
+      - title
+      - description
+      - author_id
+    competency:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: text
+      required:
+      - id
+      - name
+      - description

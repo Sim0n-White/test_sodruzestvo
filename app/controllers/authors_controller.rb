@@ -36,7 +36,8 @@ class AuthorsController < ApplicationController
   private
 
   def set_author
-    @author = Author.find(params[:id])
+    @author = Author.find_by(id: params[:id])
+    render json: { error: 'Author not found' }, status: :not_found unless @author
   end
 
   def author_params

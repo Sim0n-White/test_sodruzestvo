@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    result = CourseEvents::Update.new(@author, author_params).call
+    result = CourseEvents::Update.new(@course, course_params).call
     return render json: result, status: :ok if result.is_a?(Course)
 
     render json: result[:errors], status: :unprocessable_entity
@@ -32,7 +32,8 @@ class CoursesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find(params[:id])
+    @course = Course.find_by(id: params[:id])
+    render json: { error: 'Course not found' }, status: :not_found unless @course
   end
 
   def course_params
