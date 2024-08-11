@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CourseEvents
   class Update
     def initialize(course, params)

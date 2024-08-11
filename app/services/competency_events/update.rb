@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CompetencyEvents
   class Update
     def initialize(competency, params)

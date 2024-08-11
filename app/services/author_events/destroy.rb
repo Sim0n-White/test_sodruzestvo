@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthorEvents
   class Destroy
     def initialize(author)

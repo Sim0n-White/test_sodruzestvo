@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthorEvents
   class Update
     def initialize(author, params)

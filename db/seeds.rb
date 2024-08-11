@@ -1,15 +1,6 @@
-# db/seeds.rb
-
-# Удаляем связи между курсами и компетенциями
 CourseCompetency.destroy_all
-
-# Удаляем курсы
 Course.destroy_all
-
-# Удаляем авторов
 Author.destroy_all
-
-# Удаляем компетенции
 Competency.destroy_all
 
 # Создаем авторов
@@ -51,8 +42,7 @@ CourseCompetency.create([
   { course: courses[1], competency: competencies[0] },
   { course: courses[2], competency: competencies[0] },
   { course: courses[3], competency: competencies[0] },
-  { course: courses[4], competency: competencies[0] },
-
+  { course: courses[4], competency: competencies[0] }
 ])
 
 puts "Seed data created successfully."
