@@ -1,7 +1,5 @@
 # README
 
-# Название Проекта
-
 [![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-6.1.7.8-red)](https://rubyonrails.org/)
 [![Ruby](https://img.shields.io/badge/Ruby-3.0.0-red)](https://www.ruby-lang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-%3E%3D%2012-blue)](https://www.postgresql.org/)
