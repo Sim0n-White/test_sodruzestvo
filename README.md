@@ -6,7 +6,8 @@
 
 ## Описание
 
-Тестовой задание Backend Содружество
+Тестовое задание Backend Содружество [Тестовое_задание_Backend_Содружество.pdf](https://github.com/user-attachments/files/18441438/_._Backend_.pdf)
+
 
 ## Начало работы
 
